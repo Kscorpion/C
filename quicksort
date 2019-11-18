@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int quicksort(int arr[],int left,int right){
+ //very importent !!!
+ if(left > right) return 0;
+ int i = left;
+ int j = right;
+ int base = arr[left];
+ while(j > i){
+  while(arr[j] >= base && j > i){
+   j--;
+  } 
+
+  while(arr[i] <= base && j > i){
+   i++;
+  } 
+  
+  if(j > i){
+   int temp = arr[i];
+   arr[i] = arr[j];
+   arr[j] = temp;
+  } 
+ }
+ 
+ arr[left] = arr[i];
+ arr[i] = base;
+ quicksort(arr,0,i-1);
+ quicksort(arr,i+1,right);
+
+ return 0;
+}
+
+
+void main(){
+ int arr[] = {12,34,67,2,89,14};
+ int len = sizeof(arr)/sizeof(int);
+ quicksort(arr,0,len-1);
+ int i;
+ for(i = 0; i < len; i++){
+  printf("%d\t", arr[i]);
+ }
+}
