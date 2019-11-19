@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int *PopSort(int *arr,int count){
+	int i,j,temp;
+	for(i=0;i<count-1;i++){
+		for(j=0;j<count-i-1;j++){
+			if(arr[j]>arr[j+1]){
+				temp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = temp;
+			}
+		}
+	}
+	return arr;
+}
+
+int *PopSortOptimization(int *arr,int count){
+        int i,j,temp;
+        for(i=0;i<count-1;i++){
+		int issort = 0;
+                for(j=0;j<count-i-1;j++){
+                        if(arr[j]>arr[j+1]){
+				issort = 1;
+                                temp = arr[j];
+                                arr[j] = arr[j+1];
+                                arr[j+1] = temp;
+                        }
+                }
+		//如果没有交换过元素，则已经有序
+		if(issort==0) break;
+        }
+        return arr;
+}
+
+void main(){
+	int i = 0;
+	int arr[] = {4,2,7,3,8,4,8,3,2,8,3,5};
+	int count = sizeof(arr)/sizeof(int);
+	for(i=0;i<count;i++){
+                printf("%d\t",arr[i]);
+        } 
+	//普通排序	
+	int *array = PopSort(arr,count);
+	printf("\n");
+	for(i=0;i<count;i++){
+		printf("%d\t",array[i]);
+	}
+	printf("\n");	
+	//优化
+	int *array1 = PopSortOptimization(arr,count);
+	for(i=0;i<count;i++){
+		printf("%d\t",array1[i]);
+	}
+	printf("\n");
+}
+
