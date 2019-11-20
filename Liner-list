@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define Size 5
+
+typedef struct Table
+{
+    int *head;//声明名为head 长度不确定的数组 （动态数组）
+    int length;//记录当前顺序表长度
+    int size;//记录顺序表存储容量
+}table;
+
+//初始化
+table initTable(){
+    table t;
+    t.head = (int*)malloc(sizeof(int));
+    if(!t.head){
+        printf("创建线性表失败");
+        exit(0);
+    }
+    t.length = 0;
+    t.size = Size;
+    return t;
+}
+
+//展示
+int displayTable(table t){
+    int i;
+    for (i = 0; i < t.length; i++)
+    {
+        printf("%d \t",t.head[i]);
+    }
+
+    printf("\n");
+}
+
+int main(){
+    table t = initTable();
+    //向顺序表中插入元素
+    int i;
+    for(i = 0;i<Size;i++){
+        t.head[i] = i;
+        t.length++;
+    }
+    printf("顺序表中存储的元素分别为：\n");
+    displayTable(t);
+    return 0;
+}
