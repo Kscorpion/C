@@ -12,7 +12,7 @@ typedef struct Table
 //初始化
 table initTable(){
     table t;
-    t.head = (int*)malloc(sizeof(int));
+    t.head = (int*)malloc(Size*sizeof(int));
     if(!t.head){
         printf("创建线性表失败");
         exit(0);
