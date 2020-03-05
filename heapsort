@@ -6,7 +6,6 @@ void swap(int arr[] ,int i ,int j){
 	arr[j] = temp;
 }
 
-
 //找出最大的节点与父节点进行交换
 void heapify(int tree[], int n,int i){
 	if(i>=n){
