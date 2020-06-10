@@ -7,12 +7,12 @@ typedef struct List{
 }list;
 
 list * initlisthead(){ //头插法初始化
-	link* p;
-        link* temp = (link*)malloc(sizeof(link));
+	list* p;
+        list* temp = (list*)malloc(sizeof(list));
         temp->next = NULL;
         int n;
         for(n=2;n<6;n++){
-                 p = (link*)malloc(sizeof(link));
+                 p = (list*)malloc(sizeof(list));
                  p->data = n;
                  p->next = temp->next;
                  temp->next = p;
