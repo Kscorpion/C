@@ -15,7 +15,7 @@ list * initlist(){
 		new->data = i;
 		new->next = NULL;
 		temp->next = new;
-		temp = temp->next;
+		temp = temp->next; //临时节点循环指向下一个
 	}
 	return p;
 }
