@@ -6,6 +6,20 @@ typedef struct List{
 	struct List* next;
 }list;
 
+list * initlisthead(){ //头插法初始化
+	link* p;
+        link* temp = (link*)malloc(sizeof(link));
+        temp->next = NULL;
+        int n;
+        for(n=2;n<6;n++){
+                 p = (link*)malloc(sizeof(link));
+                 p->data = n;
+                 p->next = temp->next;
+                 temp->next = p;
+	}
+	return p;
+}
+
 list * initlist(){
 	int i;
 	list * temp = (list*)malloc(sizeof(list));
