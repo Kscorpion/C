@@ -21,15 +21,19 @@ list * initlisthead(){ //头插法初始化
 }
 
 list * initlist(){
-	int i;
-	list * temp = (list*)malloc(sizeof(list));
-	list * p = temp;
-	for(i=1;i<=5;i++){
-		list * new = (list*)malloc(sizeof(list));
-		new->data = i;
-		new->next = NULL;
-		temp->next = new;
-		temp = temp->next; //临时节点循环指向下一个
+	list* p = (link*)malloc(sizeof(list));
+	p = NULL;
+	link* temp = (list*)malloc(sizeof(list));
+	temp->data = 1;
+	temp->next = NULL;
+	p = temp;
+	int n;
+	for(n=2;n<6;n++){
+		link* a = (list*)malloc(sizeof(list));
+		a->data = n;
+		a->next = NULL;
+		temp->next = a;
+		temp = temp->next; 
 	}
 	return p;
 }
