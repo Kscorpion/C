@@ -20,6 +20,18 @@ list * initlisthead(){ //头插法初始化
 	return p;
 }
 
+list * initlistheadsimplify(){ //头插法初始化简化版
+	list* p = (link*)malloc(sizeof(list));
+	int n;
+	for(n=1;n<10;n++){
+		link* temp = (list*)malloc(sizeof(list));
+		temp->data = n;
+		temp->next = p;
+		p = temp;
+	}
+	return p;
+}
+
 list * initlist(){
 	list* p = (link*)malloc(sizeof(list));
 	p = NULL;
