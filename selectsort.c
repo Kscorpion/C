@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void selectsort(int *arr,int count){ //这里第一个参数是通过指针传递的,count一定要从外部传进来,否则计算的应该是指针的count
+void selectsort(int *arr,int count){ //数组是通过指针传递的,count一定要从外部传进来,否则计算的应该是指针的count
 	int end ;
 	int begin ;
 	for(end=count-1;end>0;end--){
