@@ -12,7 +12,7 @@ void swap(int *arr,int a,int b){
 *简单来说就是选择下标为1的位置和下标为0的位置元素进行比较,如果当前位置小于前面的元素就一直进行交换
 *通过使用cur标识来进行交换,保证不与begin++冲突，同时也要保证cur是大于0的防止越界.
 */
-void insertsort(int *arr,int count){
+void insertsortbak(int *arr,int count){
 	int begin,cur;
 	for(begin=1;begin<count;begin++){
 		cur = begin;
@@ -20,6 +20,25 @@ void insertsort(int *arr,int count){
 			swap(arr,cur,cur-1);
 			cur--;	
 		}
+	}
+}
+
+/*
+*优化思路：
+*1.先将待插入的元素备份
+*2.头部有序数据中比待插入元素大的，都朝尾部方向挪动1个位置
+*3.将待插入的元素放入最终合适位置
+*/
+void insertsort(int *arr,int count){
+	int begin,cur,bak;
+	for(begin=1;begin<count;begin++){
+		cur = begin;
+		bak = arr[cur];
+		while(cur>0 && bak<arr[cur-1]){
+			swap(arr,cur,cur-1);
+			cur--;	
+		}
+		arr[cur]=bak;
 	}
 }
 
