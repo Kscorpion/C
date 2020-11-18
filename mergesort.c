@@ -1,48 +1,47 @@
 #include<stdio.h>
-#include<stdlib.h>
-void merge(int *a, int *c, int L, int R)
-{
-    int mid = (L + R) >> 1;
-    int i = L, j = mid + 1, k = L;
-    while (i <= mid&&j <= R)    //将 a 数组分成左右两边，归并到 c 数组
-    {
-        if (a[i] <= a[j])
-            c[k++] = a[i++];
-        else
-            c[k++] = a[j++];
-    }
-    while (i <= mid)       // 前半数组还有剩余的情况
-        c[k++] = a[i++];
-    while (j <= R)         // 后半数组还有剩余的情况
-        c[k++] = a[j++];
-    for (i = L; i <= R; i++)  // 放回去
-        a[i] = c[i];
+
+void merge(int *arr,int L,int M,int R){
+	int LEFT_SIZE = M-L;
+	int RIGHT_SIZE = R-M+1;
+	int left[LEFT_SIZE];
+	int right[RIGHT_SIZE];
+	int i,j,k;
+	for(i=L;i<M;i++)
+		left[i-L] = arr[i];
+	for(i=M;i<=R;i++)
+		right[i-M] = arr[i];
+	i=0;j=0;k=L;
+	while(i<LEFT_SIZE && j<RIGHT_SIZE){
+		if(left[i]<right[j]){
+			arr[k++] = left[i++];
+		}else{
+			arr[k++] = right[j++];
+		}	
+	}
+	while(i<LEFT_SIZE){
+		arr[k++] = left[i++];
+	}
+	while(j<RIGHT_SIZE){
+		arr[k++] = right[j++];
+	}
 }
-void mergeSort(int *a, int *c, int L, int R)
-{
-    if (L == R)
-        return;
-    int mid = (L + R) >> 1;
-    mergeSort(a, c, L, mid);
-    mergeSort(a, c, mid + 1, R);
-    merge(a, c, L, R);
+
+void mergeSort(int *arr,int L,int R){
+	if(L==R)return;
+	int M = L+((R-L)>>1);
+	mergeSort(arr,L,M);
+	mergeSort(arr,M+1,R);
+	merge(arr,L,M+1,R);
 }
-int main(void)
-{
-    const int N = 404;
-    int n, a[N], c[N];
- 
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++)
-        scanf("%d", &a[i]);
- 
-    mergeSort(a, c, 1, n);
- 
-    for (int i = 1; i <= n; i++)
-    {
-        printf("%d ", a[i]);
-    }puts("");
- 
-    system("pause");
-    return 0;
+
+void main(){
+	int arr[] = {1,3,2,4,5,7,6,9,8};
+	int L = 0;
+	int R = sizeof(arr)/sizeof(int);
+	mergeSort(arr,L,R);
+	int n;
+	for(n=0;n<R;n++){
+		printf("%d\t",arr[n]);
+	}
+	printf("\n");
 }
